@@ -24,11 +24,20 @@ def convert_decimals(obj):
 def lambda_handler(event, context):
     table = dynamodb.Table(TABLE_NAME)
 
+    # Get the key from the path parameters
+    if 'pathParameters' not in event or 'location_id' not in event['pathParameters']:
+        return {
+            'statusCode': 400,
+            'body': json.dumps("Missing 'location_id' path parameter")
+        }
+
+    key_value = event['pathParameters']['location_id']
+
     try:
         # Query to get all items with SK 
         response = table.query(
             IndexName=GSI_NAME,
-            KeyConditionExpression=Key('location_id').eq(1)
+            KeyConditionExpression=Key('location_id').eq(key_value)
         )
         items = response.get('Items', [])
 
