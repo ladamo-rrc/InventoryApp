@@ -9,7 +9,7 @@ on:
       - 'lambda/delete_inventory_item/lambda_function.py'
       - 'lambda/get_all_inventory_items/lambda_function.py'
       - 'lambda/get_inventory_item/lambda_function.py'
-      - 'lambda/get_location_items/lambda_function.py'
+      - 'lambda/get_location_inventory_items/lambda_function.py'
 
 jobs:
   deploy:
