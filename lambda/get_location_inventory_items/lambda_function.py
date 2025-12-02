@@ -31,7 +31,7 @@ def lambda_handler(event, context):
             'body': json.dumps("Missing 'location_id' path parameter")
         }
 
-    key_value = event['pathParameters']['location_id']
+    key_value = int(event['pathParameters']['location_id'])
 
     try:
         # Query to get all items with SK 
